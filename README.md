@@ -16,14 +16,26 @@ For further questions please contact [@jiwoongbio](https://github.com/jiwoongbio
 
 ```
 # Generate a pileup file from multiple BAM files
-samtools mpileup -q 1 -f reference.fasta normal.bam tumor1.bam tumor2.bam | gzip > samples.pileup.gz
+samtools mpileup -q 1 -f hg19.fasta Blood.bam Primary.bam Secondary.bam Tertiary.bam | gzip > osteosarcoma.pileup.gz
 
 # Calculate RMSD values from a pileup file
-perl pileup.rmsd.vaf.pl -d 10 samples.pileup.gz > rmsd.txt
+perl pileup.rmsd.vaf.pl -d 10 osteosarcoma.pileup.gz > osteosarcoma.rmsd.txt
 
 # Generate various plots using RMSD values
-Rscript rmsd.plots.R rmsd.txt output normal tumor1 tumor2 reference
+Rscript rmsd.plots.R osteosarcoma.rmsd.txt osteosarcoma Blood Primary Secondary Tertiary hg19
 ```
+
+
+## Example plots
+
+1. Heatmap
+![](osteosarcoma.heatmap.png)
+
+2. Multidimensional scaling
+![](osteosarcoma.mds.png)
+
+3. Minimum evolution tree
+![](osteosarcoma.me.png)
 
 
 ## Citation
